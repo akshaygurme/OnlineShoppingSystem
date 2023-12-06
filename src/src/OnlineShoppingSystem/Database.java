@@ -3,6 +3,7 @@ package OnlineShoppingSystem;
 import javax.xml.stream.StreamFilter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class Database {
 
@@ -40,5 +41,21 @@ public class Database {
     }
     public void insertData(){
         String query = "insert into ";
+    }
+
+    public boolean adminLogin(String username, String password, Connection con)
+    {
+        String query="select * from admin_Login where username='" + username + "' and password='" + password + "'";
+        try {
+            Statement st = con.createStatement();
+            var result = st.executeQuery(query);
+            if(result!=null)
+            {
+                return true;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return false;
     }
 }
