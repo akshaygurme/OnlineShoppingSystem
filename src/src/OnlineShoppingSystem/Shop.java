@@ -1,7 +1,6 @@
 package OnlineShoppingSystem;
 
 import java.sql.Connection;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Shop {
@@ -43,6 +42,9 @@ public class Shop {
                     if (result) {
                         //admin function call
                         System.out.println("Logged into Admin");
+                        Admin ad = new Admin();
+                        ad.adminFuntion(con);
+
                     }
                     break;
 

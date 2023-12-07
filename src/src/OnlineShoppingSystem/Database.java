@@ -1,8 +1,8 @@
 package OnlineShoppingSystem;
 
-import javax.xml.stream.StreamFilter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class Database {
@@ -57,5 +57,24 @@ public class Database {
             System.out.println(e);
         }
         return false;
+    }
+
+    public void addProduct(Connection con, String name, String price, String quantity){
+        String query = "insert into product_data (name,price,quantity) values (?, ?, ?)";
+
+        //use prepared statement
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, name);
+            st.setString(2, price);
+            st.setString(3, quantity);
+
+            st.execute();
+            System.out.println("Added Product");
+
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }
 }
