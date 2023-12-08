@@ -77,4 +77,64 @@ public class Database {
             System.out.println(e);
         }
     }
+
+    public  void deleteProduct(Connection con,String name){
+        String query = "delete from product_data where name = '"+name+"'";
+
+        try
+        {
+        Statement st = con.createStatement();
+        st.execute(query);
+        System.out.println("Delete Product");
+        }catch (Exception e)
+        {
+            System.out.println("Error Deleting Product" +e);
+        }
+    }
+
+    public void allProduct(Connection con)
+    {
+        String query = "Select * from product_data";
+        try {
+            Statement st = con.createStatement();
+           var result = st.executeQuery(query);
+
+           while (result.next()) {
+               int id = result.getInt("id");
+               String name = result.getString("name");
+               int price = result.getInt("price");
+               int quantity = result.getInt("quantity");
+
+               System.out.format("%s, %s, %s, %s\n", id, name, price, quantity);
+               System.out.println("");
+           }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+    public void searchProduct(Connection con, String name)
+    {
+        String query = "Select * from product_data where name = '"+name+"'";
+        try {
+            Statement st = con.createStatement();
+            var result = st.executeQuery(query);
+
+            while (result.next()) {
+                int id = result.getInt("id");
+                name = result.getString("name");
+                int price = result.getInt("price");
+                int quantity = result.getInt("quantity");
+
+                System.out.format("%s, %s, %s, %s\n", id, name, price, quantity);
+                System.out.println("");
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
 }

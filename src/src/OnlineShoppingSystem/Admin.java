@@ -34,9 +34,19 @@ public class Admin {
                 db.addProduct(con,name,price,quantity);
                 break;
             case "2":
+                System.out.printf("Enter Product Name");
+                name=in.nextLine();
+                db.deleteProduct(con,name);
                 break;
-            case "3":break;
-            case "4":break;
+            case "3":
+                System.out.println("All products List :");
+                db.allProduct(con);
+                break;
+            case "4":
+                System.out.printf("Enter Product Name");
+                name=in.nextLine();
+                db.searchProduct(con,name);
+                break;
             case "5":break;
             case "6":break;
             case "7":break;
