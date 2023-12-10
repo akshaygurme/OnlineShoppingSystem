@@ -12,10 +12,10 @@ public class Admin {
         System.out.println("2. Delete Products");
         System.out.println("3. View All Products");
         System.out.println("4. Search Product");
-        System.out.println("5. Adding customers");
+        System.out.println("5. Add customers");
         System.out.println("6. Removing customers");
-        System.out.println("7. Editing profiles");
-        System.out.println("8. View registered customers");
+//        System.out.println("7. Editing profiles");
+        System.out.println("7. View registered customers");
 
         Scanner in = new Scanner(System.in);
         String choice = in.nextLine();
@@ -47,10 +47,24 @@ public class Admin {
                 name=in.nextLine();
                 db.searchProduct(con,name);
                 break;
-            case "5":break;
-            case "6":break;
-            case "7":break;
-            case "8":break;
+            case "5":
+                System.out.println("Enter customer name");
+                name=in.nextLine();
+                System.out.println("Enter Age");
+                String age = in.nextLine();
+                System.out.println("Enter city");
+                String cityName=in.nextLine();
+                db.createCustomer(con,name,age,cityName);
+                break;
+            case "6":
+                System.out.printf("Enter Customer Name you want to delete");
+                name=in.nextLine();
+                db.deleteCustomer(con,name);
+                break;
+            case "7":
+                System.out.println("All Customers List :");
+                db.allCustomers(con);
+                break;
             default:break;
 
 

@@ -137,4 +137,62 @@ public class Database {
             System.out.println(e);
         }
     }
+
+    public void createCustomer(Connection con,String name, String age,String cityName){
+        String query = "insert into customer_info (name,age,city) values (?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, name);
+            st.setString(2, age);
+            st.setString(3, cityName);
+
+            st.execute();
+            System.out.println("Added Customer");
+            }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+//    deleteCustomer(con,name)
+    public  void deleteCustomer(Connection con,String name){
+        String query = "delete from customer_info where name = '"+name+"'";
+
+        try
+        {
+            Statement st = con.createStatement();
+            st.execute(query);
+            System.out.println("Delete Product");
+        }catch (Exception e)
+        {
+            System.out.println("Error Deleting Product" +e);
+        }
+    }
+
+//    allCustomers(con)
+
+    public void allCustomers(Connection con)
+    {
+        String query = "Select * from customer_info";
+        try {
+            Statement st = con.createStatement();
+            var result = st.executeQuery(query);
+
+            while (result.next()) {
+                int cust_id = result.getInt("cust_id");
+                String name = result.getString("name");
+                int age = result.getInt("age");
+                String city = result.getString("city");
+
+                System.out.format("%s, %s, %s, %s\n", cust_id, name, age, city);
+                System.out.println("");
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
 }

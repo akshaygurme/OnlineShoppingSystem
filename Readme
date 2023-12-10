@@ -9,3 +9,8 @@ use online_shopping_db;
 Product_data :-
 create table product_data (id int auto_increment primary key, name varchar(255), price int, quantity int);
 insert into product_data (name,price,quantity) values ("Desktop", "10000", "20");
+
+Customer_info :-
+create table customer_info(cust_id int auto_increment primary key, name varchar(255), age int, city varchar(255));
+insert into customer_info values(1,"Akshay", 28,"Aurangabad");
+
