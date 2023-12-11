@@ -1,9 +1,7 @@
 package OnlineShoppingSystem;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.List;
 
 public class Database {
 
@@ -172,12 +170,13 @@ public class Database {
 
 //    allCustomers(con)
 
-    public void allCustomers(Connection con)
+    public ResultSet allCustomers(Connection con)
     {
         String query = "Select * from customer_info";
         try {
             Statement st = con.createStatement();
             var result = st.executeQuery(query);
+//            List<ResultSet>
 
             while (result.next()) {
                 int cust_id = result.getInt("cust_id");
@@ -187,12 +186,15 @@ public class Database {
 
                 System.out.format("%s, %s, %s, %s\n", cust_id, name, age, city);
                 System.out.println("");
+
             }
+            return result;
         }
         catch (Exception e)
         {
             System.out.println(e);
         }
+        return null;
     }
 
 }

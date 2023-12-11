@@ -1,5 +1,6 @@
 package OnlineShoppingSystem;
 
+import javax.sound.midi.Soundbank;
 import java.sql.Connection;
 import java.util.Scanner;
 
@@ -49,7 +50,30 @@ public class Shop {
                     break;
 
                 case "2":
-                    System.out.println("Register as Customer");
+                    System.out.println("Customer Login");
+                    System.out.println("Enter Customer Id : ");
+                    String custId = in.nextLine();
+                    System.out.println("Enter Customer Name : ");
+                    password = in.nextLine();
+
+
+                    var custResult= db.allCustomers(con);
+                    try{
+                    while (custResult.next()) {
+                        String cust_id = custResult.getString("cust_id");
+                        String name = custResult.getString("name");
+                        if(custId == cust_id && password==name){
+                            Customer cust = new Customer();
+                            cust.customerFunction(con);
+                        }
+                        else {
+                            System.out.println("Wrong Customer Id or Customer Name");
+                        }
+
+                    }}catch (Exception e){
+                        System.out.println(e);
+                    }
+
                     break;
 
                 case "3":
