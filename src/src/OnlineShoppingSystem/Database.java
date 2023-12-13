@@ -1,6 +1,7 @@
 package OnlineShoppingSystem;
 
 import java.sql.*;
+import java.util.Collections;
 import java.util.List;
 
 public class Database {
@@ -178,13 +179,70 @@ public class Database {
             var result = st.executeQuery(query);
 //            List<ResultSet>
 
-            while (result.next()) {
-                int cust_id = result.getInt("cust_id");
-                String name = result.getString("name");
-                int age = result.getInt("age");
-                String city = result.getString("city");
+//            while (result.next()) {
+//                int cust_id = result.getInt("cust_id");
+//                String name = result.getString("name");
+//                int age = result.getInt("age");
+//                String city = result.getString("city");
+//
+//                System.out.format("%s, %s, %s, %s\n", cust_id, name, age, city);
+//                System.out.println("");
+//
+//            }
+            return result;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        return null;
+    }
 
-                System.out.format("%s, %s, %s, %s\n", cust_id, name, age, city);
+    public void  addProductCart(Connection con,String productId,String customerId)
+    {
+        String query = "insert into cart values (?,?)";
+        try{
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1,productId);
+            pst.setString(2,customerId);
+
+            pst.execute();
+            System.out.println("Added product in Cart");
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    public void  removeProductCart(Connection con,String productId,String customerId)
+    {
+        String query = "delete form cart where product_Id = ? and cust_id = ?";
+        try{
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1,productId);
+            pst.setString(2,customerId);
+
+            pst.execute();
+            System.out.println("Added product in Cart");
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+    public ResultSet allCartList(Connection con, String customerId)
+    {
+        String query = "Select * from cart where cust_id = '"+customerId+"'";
+        try {
+            Statement st = con.createStatement();
+            var result = st.executeQuery(query);
+
+            while (result.next()) {
+//                int cust_id = result.getInt("cust_id");
+                String productId = result.getString("product_id");
+//                int age = result.getInt("age");
+//                String city = result.getString("city");
+
+                System.out.format("%s\n", productId);
                 System.out.println("");
 
             }

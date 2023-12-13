@@ -62,9 +62,10 @@ public class Shop {
                     while (custResult.next()) {
                         String cust_id = custResult.getString("cust_id");
                         String name = custResult.getString("name");
-                        if(custId == cust_id && password==name){
+                        if(custId.equals(cust_id) && password.equals(name)){
                             Customer cust = new Customer();
-                            cust.customerFunction(con);
+                            cust.customerFunction(con,custId);
+                            break;
                         }
                         else {
                             System.out.println("Wrong Customer Id or Customer Name");
