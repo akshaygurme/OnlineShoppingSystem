@@ -20,8 +20,8 @@ public class Shop {
             System.out.println("");
             System.out.println("1 - REGISTER AS ADMIN");
             System.out.println("2 - REGISTER AS CUSTOMER");
-            System.out.println("3 - LOGIN TO SYSTEM");
-            System.out.println("4 - EXIT");
+//            System.out.println("3 - LOGIN TO SYSTEM");
+            System.out.println("3 - EXIT");
             System.out.println("");
             System.out.println("*********************************************************");
             System.out.println("");
@@ -77,11 +77,11 @@ public class Shop {
 
                     break;
 
-                case "3":
-                    System.out.println("Login to System");
-                    break;
+//                case "3":
+//                    System.out.println("Login to System");
+//                    break;
 
-                case "4":
+                case "3":
                     System.out.println("Exit");
                     cont=false;
                     break;

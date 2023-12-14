@@ -254,5 +254,17 @@ public class Database {
         }
         return null;
     }
+     public void removeAllProductCart(Connection con, String cust_id){
+        String query = "delete from cart where cust_id = ?";
+        try{
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1,cust_id);
+
+            pst.execute();
+
+        }catch (Exception  e){
+
+        }
+     }
 
 }

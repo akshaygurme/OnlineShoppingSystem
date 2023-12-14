@@ -47,12 +47,10 @@ public class Customer {
                     db.allCartList(con,customerId);
                     break;
                 case "6":
+                    System.out.println("All Cart products bought");
+                    db.removeAllProductCart(con, customerId);
                     break;
                 case "7":
-                    break;
-                case "8":
-                    break;
-                case "9":
                     break;
                 default:
                     System.out.println("Wrong Choice");
